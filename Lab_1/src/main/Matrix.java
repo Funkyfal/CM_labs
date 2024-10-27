@@ -1,62 +1,59 @@
+package main;
+
 public class Matrix {
     private int N;
     private int M;
     private double[][] data;
 
-    // Конструктор для инициализации матрицы заданного размера
     public Matrix(int n, int m) {
         N = n;
         M = m;
-        setData(new double[N][N]);
+        setData(new double[getN()][getN()]);
     }
 
-    // Конструктор для создания матрицы из двумерного массива
     public Matrix(double[][] data) {
         N = data.length;
         M = data[0].length;
-        this.setData(new double[N][N]);
-        for (int i = 0; i < N; i++) {
-            System.arraycopy(data[i], 0, this.getData()[i], 0, N);
+        this.setData(new double[getN()][getN()]);
+        for (int i = 0; i < getN(); i++) {
+            System.arraycopy(data[i], 0, this.getData()[i], 0, getN());
         }
     }
 
-    // Метод сложения матриц
     public Matrix add(Matrix other) {
-        if (N != other.N || M != other.M) {
+        if (getN() != other.getN() || getM() != other.getM()) {
             throw new IllegalArgumentException("Матрицы должны быть одинакового размера для сложения.");
         }
-        Matrix result = new Matrix(N, N);
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
+        Matrix result = new Matrix(getN(), getN());
+        for (int i = 0; i < getN(); i++) {
+            for (int j = 0; j < getN(); j++) {
                 result.getData()[i][j] = getData()[i][j] + other.getData()[i][j];
             }
         }
         return result;
     }
 
-    // Метод вычитания матриц
     public Matrix subtract(Matrix other) {
-        if (N != other.N || M != other.M) {
+        if (getN() != other.getN() || getM() != other.getM()) {
             throw new IllegalArgumentException("Матрицы должны быть одинакового размера для вычитания.");
         }
-        Matrix result = new Matrix(N, N);
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
+        Matrix result = new Matrix(getN(), getN());
+        for (int i = 0; i < getN(); i++) {
+            for (int j = 0; j < getN(); j++) {
                 result.getData()[i][j] = getData()[i][j] - other.getData()[i][j];
             }
         }
         return result;
     }
 
-    // Метод умножения матриц
     public Matrix multiply(Matrix other) {
-        if (N != other.M) {
+        if (getN() != other.getM()) {
             throw new IllegalArgumentException("Количество столбцов первой матрицы должно быть равно количеству строк второй матрицы.");
         }
-        Matrix result = new Matrix(N, other.M);
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < other.M; j++) {
-                for (int k = 0; k < M; k++) {
+        Matrix result = new Matrix(getN(), other.getM());
+        for (int i = 0; i < getN(); i++) {
+            for (int j = 0; j < other.getM(); j++) {
+                for (int k = 0; k < getM(); k++) {
                     result.getData()[i][j] += getData()[i][k] * other.getData()[k][j];
                 }
             }
@@ -65,22 +62,22 @@ public class Matrix {
     }
 
     public Matrix transpose() {
-        Matrix transposed = new Matrix(M, N);
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                transposed.data[j][i] = this.data[i][j];
+        Matrix transposed = new Matrix(getM(), getN());
+        for (int i = 0; i < getN(); i++) {
+            for (int j = 0; j < getM(); j++) {
+                transposed.getData()[j][i] = this.getData()[i][j];
             }
         }
         return transposed;
     }
 
     public void isSymmetric() {
-        if (N != M) {
+        if (getN() != getM()) {
             throw new IllegalArgumentException("Для симметричности матрица должна быть квадратной");
         }
-        for (int i = 0; i < N; i++) {
-            for (int j = i + 1; j < M; j++) {
-                if (data[i][j] != data[j][i]) {
+        for (int i = 0; i < getN(); i++) {
+            for (int j = i + 1; j < getM(); j++) {
+                if (getData()[i][j] != getData()[j][i]) {
                     throw new IllegalArgumentException("Матрица не симметричная");
                 }
             }
@@ -90,14 +87,18 @@ public class Matrix {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
+
         for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                result.append(getData()[i][j]).append(" ");
+            result.append("|");
+            for (int j = 0; j < M; j++) {
+                result.append(String.format(" %6.2f", data[i][j]));
             }
-            result.append("\n");
+            result.append(" |\n");
         }
         return result.toString();
     }
+
+
 
     public double[][] getData() {
         return data;
@@ -107,5 +108,13 @@ public class Matrix {
         this.data = data;
         N = data.length;
         M = data[0].length;
+    }
+
+    public int getN() {
+        return N;
+    }
+
+    public int getM() {
+        return M;
     }
 }

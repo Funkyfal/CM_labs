@@ -1,7 +1,12 @@
+package main;
+
+import main.Solvers.SqrtRootMethod;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Vector;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,7 +19,7 @@ public class Main {
 
             Matrix matrix = new Matrix(N, N);
             double[][] data = new double[N][N];
-            double[] vectorB = new double[N];
+            Vector<Double> vectorB = new Vector<>();
 
             for (int i = 0; i < N; i++) {
                 String[] line = br.readLine().trim().split("\\s+");
@@ -23,20 +28,21 @@ public class Main {
                 }
             }
             matrix.setData(data);
-            matrix.isSymmetric();
 
             String[] vectorLine = br.readLine().trim().split("\\s+");
             for (int i = 0; i < N; i++) {
-                vectorB[i] = Double.parseDouble(vectorLine[i]);
+                vectorB.add(Double.parseDouble(vectorLine[i]));
             }
             br.close();
 
             System.out.println("Матрица А:\n" + matrix);
-            System.out.println("A':\n" + matrix.transpose());
 
             System.out.println("Вектор b:");
-            System.out.println(Arrays.toString(vectorB));
+            System.out.println(vectorB);
 
+            SqrtRootMethod solver = new SqrtRootMethod(matrix, vectorB);
+
+            System.out.println("Решение системы: \n" + Arrays.toString(solver.solve()));
         } catch (IOException e) {
             System.err.println("Ошибка чтения файла: " + e.getMessage());
         }
