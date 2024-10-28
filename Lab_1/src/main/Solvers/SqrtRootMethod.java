@@ -70,16 +70,15 @@ public class SqrtRootMethod {
         }
         for (int i = 1; i < dataT.length; i++) {
             for (int j = i; j < dataT.length; j++) {
+                double sum = 0;
                 if (j == i) {
-                    double sum = 0;
                     for (int k = 0; k <= i - 1; k++) {
                         sum += dataT[k][i] * dataT[k][i];
                     }
                     dataT[i][i] = sqrt(dataA[i][i] - sum);
                 } else {
-                    double sum = 0;
                     for (int k = 0; k <= i - 1; k++) {
-                        sum += dataT[k][i] + dataT[k][j];
+                        sum += dataT[k][i] * dataT[k][j];
                     }
                     dataT[i][j] = (dataA[i][j] - sum) / dataT[i][i];
                 }
@@ -94,15 +93,30 @@ public class SqrtRootMethod {
         //Находим решение T'y = b
         double[][] dataTt = Tt.getData();
         Vector<Double> Y = new Vector<>();
-        Y.add(vectorB.getFirst() / dataTt[0][0]);
-        for(int i = 1; i < dataTt.length; i++){
+        Y.add(vectorB.getFirst() / dataT[0][0]);
+        for (int i = 1; i < dataTt.length; i++) {
             double sum = 0;
-            for(int k = 0; k <= i - 1; k++){
-                sum += dataTt[k][i] * Y.get(k);
+            for (int k = 0; k <= i - 1; k++) {
+                sum += dataT[k][i] * Y.get(k);
             }
-            Y.add((vectorB.get(i) - sum) / dataTt[i][i]);
+            Y.add((vectorB.get(i) - sum) / dataT[i][i]);
         }
-        System.out.println(Y);
-        return new double[]{1, 2, 3};
+        for (double value : Y) {
+            System.out.printf("%.2f ", value);
+        }
+        System.out.println(" - Вектор Y\n");
+
+        //Решение Tx = y
+        double[] X = new double[A.getN()];
+        X[A.getN() - 1] = Y.get(A.getN() - 1) / dataT[A.getN() - 1][A.getN() - 1];
+        for (int i = A.getN() - 1; i >= 0; i--) {
+            double sum = 0;
+            for(int k = i + 1; k <= A.getN() - 1; k++){
+                sum += dataT[i][k] * X[k];
+            }
+            X[i] = (Y.get(i) - sum) / dataT[i][i];
+        }
+
+        return X;
     }
 }
