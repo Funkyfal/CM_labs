@@ -5,7 +5,6 @@ import main.Solvers.SqrtRootMethod;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Vector;
 
 public class Main {
@@ -41,8 +40,15 @@ public class Main {
             System.out.println(vectorB);
 
             SqrtRootMethod solver = new SqrtRootMethod(matrix, vectorB);
+            Matrix X = solver.solve();
+            Matrix vectorBm = new Matrix(vectorB);
+            System.out.println("Решение системы: \n" + X);
+            Matrix Ax = matrix.multiply(X.transpose());
+            System.out.println(vectorBm);
+            System.out.println(Ax);
+            Matrix Norm = Ax.subtract(vectorBm.transpose());
 
-            System.out.println("Решение системы: \n" + Arrays.toString(solver.solve()));
+            System.out.println(Norm + "\n norm: " + Norm.getN() + " " + Norm.getM());
         } catch (IOException e) {
             System.err.println("Ошибка чтения файла: " + e.getMessage());
         }

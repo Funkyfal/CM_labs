@@ -58,9 +58,11 @@ public class SqrtRootMethod {
         return det;
     }
 
-    public double[] solve() {
-        Matrix T = new Matrix(A.getN(), A.getM());
-        Matrix Tt = new Matrix(A.getN(), A.getM());
+    public Matrix solve() {
+        int N = A.getN();
+        int M = A.getM();
+        Matrix T = new Matrix(N, M);
+        Matrix Tt = new Matrix(N, M);
         double[][] dataT = new double[T.getN()][T.getM()];
         double[][] dataA = A.getData();
 
@@ -107,16 +109,16 @@ public class SqrtRootMethod {
         System.out.println(" - Вектор Y\n");
 
         //Решение Tx = y
-        double[] X = new double[A.getN()];
-        X[A.getN() - 1] = Y.get(A.getN() - 1) / dataT[A.getN() - 1][A.getN() - 1];
-        for (int i = A.getN() - 1; i >= 0; i--) {
+        double[] X = new double[N];
+        X[N - 1] = Y.get(N - 1) / dataT[N - 1][N - 1];
+        for (int i = N - 1; i >= 0; i--) {
             double sum = 0;
-            for(int k = i + 1; k <= A.getN() - 1; k++){
+            for(int k = i + 1; k <= N - 1; k++){
                 sum += dataT[i][k] * X[k];
             }
             X[i] = (Y.get(i) - sum) / dataT[i][i];
         }
 
-        return X;
+        return new Matrix(X);
     }
 }
