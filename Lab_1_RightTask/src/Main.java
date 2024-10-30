@@ -93,6 +93,59 @@ public class Main {
         System.out.println("\n||Ax - b||₁ = " + Arrays.stream(Ax_b).sum());
 
         System.out.println("******************* ЗАДАНИЕ 2 *******************");
+
+        double[][] Q = new double[n][n];
+        double[][] R = new double[n][n];
+        for (int i = 0; i < n; i++) {
+            Q[i][i] = 1.0;
+            System.arraycopy(A[i], 0, R[i], 0, n);
+        }
+
+        for (int j = 0; j < n - 1; j++) {
+            for (int i = j + 1; i < n; i++) {
+                double a = R[j][j];
+                double bVal = R[i][j];
+                double r = sqrt(a * a + bVal * bVal);
+                double c = a / r;
+                double s = -bVal / r;
+
+                for (int k = j; k < n; k++) {
+                    double temp = R[j][k];
+                    R[j][k] = c * temp - s * R[i][k];
+                    R[i][k] = s * temp + c * R[i][k];
+                }
+
+                for (int k = 0; k < n; k++) {
+                    double temp = Q[k][j];
+                    Q[k][j] = c * temp - s * Q[k][i];
+                    Q[k][i] = s * temp + c * Q[k][i];
+                }
+            }
+        }
+
+        System.out.println("Matrix Q:");
+        printMatrix(Q);
+
+        System.out.println("Matrix R:");
+        printMatrix(R);
+
+        double[] QTb = new double[n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                QTb[i] += Q[j][i] * b[j];
+            }
+        }
+
+        double[] X1 = new double[n];
+        for (int i = n - 1; i >= 0; i--) {
+            X1[i] = QTb[i];
+            for (int j = i + 1; j < n; j++) {
+                X1[i] -= R[i][j] * X1[j];
+            }
+            X1[i] /= R[i][i];
+        }
+
+        System.out.println("\nVector X (solution): \n" + Arrays.toString(X1) + "\n");
     }
 
     public static void printMatrix(double[][] matrix) {
@@ -115,28 +168,6 @@ public class Main {
         }
         formattedArray.append("]");
         return formattedArray.toString();
-    }
-
-    public static double[][] matrixMultiply(double[][] first, double[][] second) {
-        double[][] result = new double[first.length][second[0].length];
-        for (int i = 0; i < first.length; i++) {
-            for (int j = 0; j < second[0].length; j++) {
-                for (int k = 0; k < first[0].length; k++) {
-                    result[i][j] += first[i][k] * second[k][j];
-                }
-            }
-        }
-        return result;
-    }
-
-    public static double[][] matrixSubtract(double[][] first, double[][] second) {
-        double[][] result = new double[first.length][first[0].length];
-        for (int i = 0; i < first.length; i++) {
-            for (int j = 0; j < first[0].length; j++) {
-                result[i][j] = first[i][j] - second[i][j];
-            }
-        }
-        return result;
     }
 
     public static double[] matrixSubtract(double[][] first, double[] second) {
