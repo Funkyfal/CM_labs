@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -127,7 +128,7 @@ public class Main {
         printMatrix(Q);
 
         System.out.println("Matrix R:");
-        printMatrix(R);
+        printFullMatrix(R);
 
         double[] QTb = new double[n];
         for (int i = 0; i < n; i++) {
@@ -155,6 +156,17 @@ public class Main {
                 System.out.printf("%6.2f ", element);
             }
             System.out.print(" |\n");
+        }
+    }
+
+    public static void printFullMatrix(double[][] matrix) {
+        DecimalFormat df = new DecimalFormat("0.0000000000E0");  // Форматируем с точностью до 10 знаков
+        for (double[] row : matrix) {
+            System.out.print("| ");
+            for (double element : row) {
+                System.out.print(df.format(element) + " ");
+            }
+            System.out.println("|");
         }
     }
 
