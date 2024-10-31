@@ -30,11 +30,9 @@ public class Main {
         }
 
         double[][] T = new double[n][n];
-        double[][] Tt = new double[n][n];
         T[0][0] = sqrt(A[0][0]);
         for (int i = 1; i < T.length; i++) {
             T[0][i] = A[0][i] / T[0][0];
-            Tt[i][0] = T[0][i];
         }
         for (int i = 1; i < T.length; i++) {
             for (int j = i; j < T.length; j++) {
@@ -50,7 +48,6 @@ public class Main {
                     }
                     T[i][j] = (A[i][j] - sum) / T[i][i];
                 }
-                Tt[j][i] = T[i][j];
             }
         }
 
@@ -60,8 +57,6 @@ public class Main {
         System.out.println("******************* ЗАДАНИЕ 1 *******************");
         System.out.println("Matrix T:");
         printMatrix(T);
-        System.out.println("\nMatrix T transposed:");
-        printMatrix(Tt);
 
         double[] Y = new double[n];
         Y[0] = b[0] / T[0][0];
