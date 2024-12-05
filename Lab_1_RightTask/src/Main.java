@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-import static java.lang.Math.sqrt;
+import static java.lang.Math.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -59,6 +59,9 @@ public class Main {
         printMatrix(T);
 
         double[] Y = new double[n];
+        double detT = 1;
+        for(int i = 0; i < T.length; i++)
+            detT *= T[i][i];
         Y[0] = b[0] / T[0][0];
         for (int i = 1; i < n; i++) {
             double sum = 0;
@@ -87,6 +90,7 @@ public class Main {
         double[] Ax_b = matrixSubtract(Ax, b);
         System.out.println(Arrays.toString(Ax_b));
         System.out.println("\n||Ax - b||₁ = " + Arrays.stream(Ax_b).sum());
+        System.out.println("\ndet(A) = det(T) * det(T) = " + pow(detT, 2));
 
         System.out.println("******************* ЗАДАНИЕ 2 *******************");
 
@@ -142,6 +146,18 @@ public class Main {
         }
 
         System.out.println("\nVector X (solution): \n" + Arrays.toString(X1) + "\n");
+
+        double maxSum = Double.MIN_VALUE;
+        for(int i = 0; i < n; i++){
+            double tempSum = 0;
+            for(int j = 0; j < n; j++){
+                tempSum += A[i][j] - Q[i][j] * R[i][j];
+                if(maxSum > tempSum)
+                    maxSum = tempSum;
+            }
+        }
+
+        System.out.println("||A - QR|| = " + maxSum);
     }
 
     public static void printMatrix(double[][] matrix) {
