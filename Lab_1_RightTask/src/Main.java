@@ -147,7 +147,7 @@ public class Main {
 
         System.out.println("\nVector X (solution): \n" + Arrays.toString(X1) + "\n");
 
-        double maxSum = Double.MIN_VALUE;
+        double maxSum = 0;
         for(int i = 0; i < n; i++){
             double tempSum = 0;
             for(int j = 0; j < n; j++){
