@@ -2,19 +2,32 @@ import kotlin.random.Random
 import kotlin.math.sqrt
 
 fun main() {
-    println("Введите значение от 10 до 15:")
-    val n = readln().toInt()
-
-    // Генерация симметричной матрицы
-    val matrix = Array(n) { DoubleArray(n) { 0.0 } }
-
-    for (i in 0..<n) {
-        for (j in i..<n) {
-            val value = Random.nextInt(1, 10)
-            matrix[i][j] = value.toDouble()
-            matrix[j][i] = value.toDouble()
-        }
-    }
+//    println("Введите значение от 10 до 15:")
+//    val n = readln().toInt()
+//
+//    // Генерация симметричной матрицы
+//    val matrix = Array(n) { DoubleArray(n) { 0.0 } }
+//
+//    for (i in 0 until n) {
+//        for (j in i until n) {
+//            val value = (i + 1) * (j + 2)
+//            matrix[i][j] = value.toDouble()
+//            matrix[j][i] = value.toDouble()
+//        }
+//    }
+    val n = 10
+    val matrix = arrayOf(
+        doubleArrayOf(4.0, 4.0, 2.0, 1.0, 7.0, 2.0, 4.0, 3.0, 5.0, 4.0),
+        doubleArrayOf(4.0, 7.0, 7.0, 2.0, 6.0, 6.0, 5.0, 7.0, 9.0, 6.0),
+        doubleArrayOf(2.0, 7.0, 3.0, 8.0, 9.0, 1.0, 1.0, 7.0, 9.0, 6.0),
+        doubleArrayOf(1.0, 2.0, 8.0, 3.0, 5.0, 3.0, 4.0, 3.0, 8.0, 3.0),
+        doubleArrayOf(7.0, 6.0, 9.0, 5.0, 3.0, 5.0, 9.0, 9.0, 1.0, 3.0),
+        doubleArrayOf(2.0, 6.0, 1.0, 3.0, 5.0, 3.0, 4.0, 8.0, 2.0, 5.0),
+        doubleArrayOf(4.0, 5.0, 1.0, 4.0, 9.0, 4.0, 7.0, 3.0, 1.0, 7.0),
+        doubleArrayOf(3.0, 7.0, 7.0, 3.0, 9.0, 8.0, 3.0, 8.0, 6.0, 8.0),
+        doubleArrayOf(5.0, 9.0, 9.0, 8.0, 1.0, 2.0, 1.0, 6.0, 4.0, 8.0),
+        doubleArrayOf(4.0, 6.0, 6.0, 3.0, 3.0, 5.0, 7.0, 8.0, 8.0, 6.0)
+    )
 
     println("Исходная матрица A:")
     matrix.forEach { row -> println(row.joinToString(" ") { "%8.2f".format(it) }) }
@@ -29,9 +42,9 @@ fun main() {
     // Функция для умножения матрицы на вектор
     fun multiplyMatrixVector(A: Array<DoubleArray>, x: DoubleArray): DoubleArray {
         val result = DoubleArray(n)
-        for (i in 0..<n) {
+        for (i in 0 until n) {
             result[i] = 0.0
-            for (j in 0..<n) {
+            for (j in 0 until n) {
                 result[i] += A[i][j] * x[j]
             }
         }
@@ -45,13 +58,8 @@ fun main() {
 
     // Функция для вычисления нормы ||Ax - lambda * x||
     fun computeNorm(A: Array<DoubleArray>, x: DoubleArray, lambda: Double): Double {
-        // Умножаем матрицу A на вектор x
         val Ax = multiplyMatrixVector(A, x)
-
-        // Вычитаем lambda * x из результата умножения
         val diff = Ax.zip(x).map { it.first - lambda * it.second }.toDoubleArray()
-
-        // Возвращаем евклидову норму разности
         return euclideanNorm(diff)
     }
 

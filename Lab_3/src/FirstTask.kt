@@ -55,18 +55,31 @@ fun multiplyMatrices(A: Array<DoubleArray>, B: Array<DoubleArray>): Array<Double
 }
 
 fun main() {
-    println("Введите значение от 10 до 15:")
-    val n = readln().toInt()
+//    println("Введите значение от 10 до 15:")
+//    val n = readln().toInt()
+//
+//    val matrix = Array(n) { DoubleArray(n) { 0.0 } }
+//
+//    for (i in 0..<n) {
+//        for (j in i..<n) {
+//            val value = Random.nextInt(1, 10)
+//            matrix[i][j] = value.toDouble()
+//            matrix[j][i] = value.toDouble()
+//        }
+//    }
 
-    val matrix = Array(n) { DoubleArray(n) { 0.0 } }
-
-    for (i in 0..<n) {
-        for (j in i..<n) {
-            val value = Random.nextInt(1, 10)
-            matrix[i][j] = value.toDouble()
-            matrix[j][i] = value.toDouble()
-        }
-    }
+    val matrix = arrayOf(
+        doubleArrayOf(4.0, 4.0, 2.0, 1.0, 7.0, 2.0, 4.0, 3.0, 5.0, 4.0),
+        doubleArrayOf(4.0, 7.0, 7.0, 2.0, 6.0, 6.0, 5.0, 7.0, 9.0, 6.0),
+        doubleArrayOf(2.0, 7.0, 3.0, 8.0, 9.0, 1.0, 1.0, 7.0, 9.0, 6.0),
+        doubleArrayOf(1.0, 2.0, 8.0, 3.0, 5.0, 3.0, 4.0, 3.0, 8.0, 3.0),
+        doubleArrayOf(7.0, 6.0, 9.0, 5.0, 3.0, 5.0, 9.0, 9.0, 1.0, 3.0),
+        doubleArrayOf(2.0, 6.0, 1.0, 3.0, 5.0, 3.0, 4.0, 8.0, 2.0, 5.0),
+        doubleArrayOf(4.0, 5.0, 1.0, 4.0, 9.0, 4.0, 7.0, 3.0, 1.0, 7.0),
+        doubleArrayOf(3.0, 7.0, 7.0, 3.0, 9.0, 8.0, 3.0, 8.0, 6.0, 8.0),
+        doubleArrayOf(5.0, 9.0, 9.0, 8.0, 1.0, 2.0, 1.0, 6.0, 4.0, 8.0),
+        doubleArrayOf(4.0, 6.0, 6.0, 3.0, 3.0, 5.0, 7.0, 8.0, 8.0, 6.0)
+    )
 
     println("Исходная матрица A:")
     matrix.forEach { row -> println(row.joinToString(" ") { "%8.2f".format(it) }) }
@@ -85,7 +98,7 @@ fun main() {
 
     println("\nКоличество итераций: $iterationCount")
     println("Собственные значения матрицы:")
-    for (i in 0..<n) {
+    for (i in 0..<10) {
         println("λ${i + 1} = ${"%.5f".format(currentMatrix[i][i])}")
     }
 }
