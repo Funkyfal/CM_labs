@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jetbrains.lets-plot:lets-plot-kotlin-jvm:4.1.0" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="org.jetbrains.lets-plot" artifactId="lets-plot-kotlin-jvm" version="4.1.0" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.lets-plot/lets-plot-kotlin-jvm/4.1.0/e59eace12aa9ffa650e6cac8baf7a72da27c4375/plot-api-jvm-4.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

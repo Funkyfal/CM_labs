@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jetbrains.lets-plot:vis-svg-portable-jvm:2.5.0" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="org.jetbrains.lets-plot" artifactId="vis-svg-portable-jvm" version="2.5.0" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.lets-plot/vis-svg-portable-jvm/2.5.0/8bfc226c7ad0c377a23024dfb1ccf52fb7a2f419/vis-svg-portable-jvm-2.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

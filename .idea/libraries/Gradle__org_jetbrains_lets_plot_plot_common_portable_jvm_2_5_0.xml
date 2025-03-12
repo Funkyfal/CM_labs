@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jetbrains.lets-plot:plot-common-portable-jvm:2.5.0" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="org.jetbrains.lets-plot" artifactId="plot-common-portable-jvm" version="2.5.0" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.lets-plot/plot-common-portable-jvm/2.5.0/11886def36811b9b96c8525c7378575d86fb2656/plot-common-portable-jvm-2.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
