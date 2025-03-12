@@ -2,83 +2,74 @@ import java.io.File
 import kotlin.math.abs
 import kotlin.math.cosh
 
-data class Point(val x: Double, val y: Double)
-
-fun f1(x: Double): Double = cosh(x) - 2 * x;
-
-fun f2(x: Double): Double = abs(abs(x) + 1)
-
-fun divideDifferences(points: List<Point>): List<Double>{
-    val n = points.size
-    val diffs = MutableList(n) {points[it].y}
-
-    for(j in 1 until n){
-        for(i in n - 1 downTo j){
-            diffs[i] = (diffs[i] - diffs[i - 1]) / (points[i].x - points[i - j].x)
-        }
-    }
-
-    return diffs
-}
-
-fun newtonPolynomial(points: List<Point>, x: Double): Double{
-    val diffs = divideDifferences(points)
-    var term = 1.0
-    var result = diffs[0]
-
-    for(i in 1 until points.size){
-        term *= (x - points[i - 1].x)
-        result += diffs[i] * term
-    }
-
-    return result;
-}
-
-fun exportToFile(points: List<Point>, filename: String) {
-    val file = File(filename)
-    file.writeText("x;f(x);P(x)\n")  // Заголовки столбцов с разделителем ";"
-    points.forEach { point ->
-        val xFormatted = point.x.toString().replace(".", ",")  // Заменяем точку на запятую
-        val yFormatted = point.y.toString().replace(".", ",")
-        val pFormatted = newtonPolynomial(points, point.x).toString().replace(".", ",")
-        file.appendText("$xFormatted;$yFormatted;$pFormatted\n")  // Разделитель столбцов — ";"
-    }
-}
-
 fun main() {
     val a = -3.0
     val b = 3.0
+    val functions = listOf<(Double) -> Double>(
+        { x -> cosh(x) - 2 * x },         // f1(x)
+        { x -> abs(abs(x) + 1) }          // f2(x)
+    )
+    val functionNames = listOf("f1", "f2")
+
     val degrees = listOf(2, 4, 8, 16)
 
-    for(n in degrees){
-        val pointsF1 = List(n + 1) { i ->
-            val x = a + i * (b - a) / n
-            Point(x, f1(x))
+    for ((index, f) in functions.withIndex()) {
+        val funcName = functionNames[index]
+        for (n in degrees) {
+            val (nodes, values) = generateNodesAndValues(a, b, n, f)
+            val xValues = generateSequence(a) { it + 0.01 }.takeWhile { it <= b }.toList()
+            val interpolatedValues = xValues.map { x -> interpolateNewton(nodes, values, x) }
+            val coef = dividedDifferences(nodes, values)
+
+            saveToCsv("Lab_4/data/${functionNames[index]}_n$n.csv", xValues, xValues.map(f), interpolatedValues)
+            if (n == 2) {
+                val polynomialString = newtonPolynomialString(nodes, coef)
+                println("Аналитическое представление P2(x) для $funcName :")
+                println(polynomialString)
+                println()
+            }
         }
+    }
+}
 
-        val pointsF2 = List(n + 1) {i ->
-            val x = a + i * (b - a) / n
-            Point(x, f2(x))
+fun generateNodesAndValues(a: Double, b: Double, n: Int, f: (Double) -> Double): Pair<List<Double>, List<Double>> {
+    val h = (b - a) / n
+    val nodes = List(n + 1) { a + it * h }
+    val values = nodes.map(f)
+    return nodes to values
+}
+
+fun interpolateNewton(nodes: List<Double>, values: List<Double>, x: Double): Double {
+    val n = nodes.size
+    val coef = dividedDifferences(nodes, values)
+    var result = coef[0]
+    for (i in 1 until n) {
+        var term = coef[i]
+        for (j in 0 until i) {
+            term *= (x - nodes[j])
         }
+        result += term
+    }
+    return result
+}
 
-        if(n == 2){
-            val diffs = divideDifferences(pointsF1)
-            println("------------------------------------------")
-            println("Интерполяционный многочлен второй степени для f1(x)" +
-                    "\n P(x) = ${diffs[0]} + ${diffs[1]}(x - ${pointsF1[0].x})" +
-                    "+ ${diffs[2]}(x - ${pointsF1[0].x})(x - ${pointsF1[1].x})\n")
-            println("Интерполяционный многочлен второй степени для f1(x)" +
-                    "\n P(x) = ${diffs[0]} + ${diffs[1]}(x - ${pointsF2[0].x})" +
-                    "+ ${diffs[2]}(x - ${pointsF1[0].x})(x - ${pointsF1[1].x})")
-            println("------------------------------------------")
+fun dividedDifferences(x: List<Double>, y: List<Double>): List<Double> {
+    val n = x.size
+    val coef = y.toMutableList()
+    for (j in 1 until n) {
+        for (i in n - 1 downTo j) {
+            coef[i] = (coef[i] - coef[i - 1]) / (x[i] - x[i - 1])
         }
+    }
+    return coef
+}
 
-        println("------------------------------------------")
-        exportToFile(pointsF1, "F1data_n${n}.csv")
-        println("Данные для n = $n экспортированы в файл F1data_n${n}.csv")
-
-        exportToFile(pointsF2, "F2data_n${n}.csv")
-        println("Данные для n = $n экспортированы в файл F2data_n${n}.csv")
-        println("------------------------------------------")
+fun saveToCsv(filename: String, x: List<Double>, fx: List<Double>, px: List<Double>) {
+    val file = File(filename)
+    file.printWriter().use { out ->
+        out.println("x,f(x),P_n(x)")
+        for (i in x.indices) {
+            out.println("${x[i]},${fx[i]},${px[i]}")
+        }
     }
 }

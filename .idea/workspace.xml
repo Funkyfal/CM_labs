@@ -4,51 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="550543d0-9c29-475c-82b3-8393ff210af4" name="Changes" comment="test commit">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_github_microutils_kotlin_logging_jvm_2_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_annotations_13_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_8_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_8_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_8_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_8_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_html_jvm_0_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_lets_plot_base_portable_jvm_2_5_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_lets_plot_lets_plot_common_3_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_lets_plot_lets_plot_jfx_3_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_lets_plot_lets_plot_kotlin_jvm_4_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_lets_plot_plot_base_portable_jvm_2_5_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_lets_plot_plot_builder_portable_jvm_2_5_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_lets_plot_plot_common_portable_jvm_2_5_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_lets_plot_plot_config_portable_jvm_2_5_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_lets_plot_vis_svg_portable_jvm_2_5_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_base_17_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_controls_17_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_graphics_17_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_swing_17_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_slf4j_api_1_7_29.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Lab_4/data/f1_n2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Lab_4/plot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Lab_4/plot_cheb.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Lab_4/src/MainChebyshev.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="550543d0-9c29-475c-82b3-8393ff210af4" name="Changes" comment="first and second tasks">
+      <change afterPath="$PROJECT_DIR$/Lab_4/plot_spline.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Lab_4/src/MainSpline.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/F1data_n16.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/F1data_n2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/F1data_n4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/F1data_n8.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/F2data_n16.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/F2data_n2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/F2data_n4.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/F2data_n8.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab_4/Lab_4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Lab_4/Lab_4.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab_4/out/production/META-INF/Lab_4.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab_4/out/production/MainKt.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab_4/out/production/Point.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab_4/src/Main.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab_4/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Lab_4/src/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab_4/META-INF/Lab_4.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab_4/META-INF/Lab_4.kotlin_module" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab_4/MainKt$main$xValues$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab_4/MainKt$main$xValues$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab_4/MainKt$main$xValues$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab_4/MainKt$main$xValues$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab_4/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab_4/MainKt.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +85,9 @@
   "keyToString": {
     "Gradle.Build Lab_4.executor": "Run",
     "Kotlin script (Beta).build.gradle.kts.executor": "Run",
+    "Kotlin.MainChebyshevKt.executor": "Run",
     "Kotlin.MainKt.executor": "Run",
+    "Kotlin.MainSplineKt.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "lab__4",
@@ -144,7 +110,7 @@
       <recent name="$PROJECT_DIR$/Lab_4/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MainChebyshevKt">
+  <component name="RunManager" selected="Kotlin.MainSplineKt">
     <configuration name="MainChebyshevKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainChebyshevKt" />
       <module name="Lab_4" />
@@ -159,8 +125,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MainSplineKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainSplineKt" />
+      <module name="Lab_4" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.MainSplineKt" />
         <item itemvalue="Kotlin.MainChebyshevKt" />
         <item itemvalue="Kotlin.MainKt" />
       </list>
@@ -199,7 +173,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740568664103</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="first and second tasks">
+      <option name="closed" value="true" />
+      <created>1741774513494</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1741774513494</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -209,6 +191,7 @@
     <MESSAGE value="deleted redundant class" />
     <MESSAGE value="?" />
     <MESSAGE value="test commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="test commit" />
+    <MESSAGE value="first and second tasks" />
+    <option name="LAST_COMMIT_MESSAGE" value="first and second tasks" />
   </component>
 </project>
