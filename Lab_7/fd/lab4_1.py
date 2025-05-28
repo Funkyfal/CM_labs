@@ -1,5 +1,23 @@
 import numpy as np
 
+def solve_fd(N=10):
+    h = 1 / N
+    x_nodes = np.linspace(0, 1, N+1)
+
+    # собираем систему
+    a = np.zeros(N+1); b = np.zeros(N+1); c = np.zeros(N+1); F = np.zeros(N+1)
+    b[0], c[0], F[0] = -1/h + 1, 1/h, 0
+    a[N], b[N], F[N] = -1/h, 1/h - 1, 2
+    for i in range(1, N):
+        xi = x_nodes[i]
+        a[i] = 1/h**2
+        b[i] = -2/h**2 - (xi**2 + 1)
+        c[i] = 1/h**2
+        F[i] = -xi**5 - xi**3 + 6*xi + 2
+
+    U = progonka_algorithm(a, b, c, F)
+    return x_nodes, U
+
 def progonka_algorithm(a, b, c, d):
     n = len(d)
     c_ = np.zeros(n)
@@ -20,7 +38,7 @@ def progonka_algorithm(a, b, c, d):
 
     return x
 
-N = 100
+N = 10000
 h = 1 / N
 x_nodes = np.linspace(0, 1, N+1)
 

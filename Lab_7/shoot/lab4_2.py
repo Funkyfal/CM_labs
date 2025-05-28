@@ -1,5 +1,11 @@
 import numpy as np
 
+def solve_shoot(N=10):
+    h = 1/N
+    alpha_opt = secant_method(lambda α: residual(α, h), 1, 0.5)
+    x_sol, y_sol = rk4(system, 0, [alpha_opt, -alpha_opt], 1, h)
+    return x_sol, y_sol[:,0]
+
 # Система уравнений первого порядка
 def system(x, y):
     y1, y2 = y
@@ -41,7 +47,7 @@ def secant_method(func, x0, x1, tol=1e-6, max_iter=100):
     return x1
 
 # ========== НАСТРОЙКА ==========
-N = 100           # Количество шагов
+N = 10000           # Количество шагов
 h = 1 / N          # Шаг
 # ================================
 
@@ -61,3 +67,4 @@ print("----------------------------------")
 print("   x         u(x)")
 for x, u in zip(x_sol, u_solution):
     print(f"{x:.4f} | {u:.6f}")
+
